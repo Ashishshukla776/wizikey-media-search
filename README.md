@@ -37,10 +37,11 @@ WIZIKEY-MEDIA-SEARCH/
 │   └── media_search.spec.ts       # Playwright automated test scenarios
 │
 ├── reports/
-│   ├── test-cases.md              # Smoke + Regression test cases
-│   ├── bugs.md                    # Documented issues with steps & screenshots
-│   ├── risk-analysis.md           # Risk scoring and prioritization
-│   └── ux-improvements.md         # Observations & suggestions
+│   ├── smoke_testcases.md              # Smoke test cases
+    ├── regression_testcases.md         # Regression test cases
+│   ├── bugs.md                         # Documented issues with steps & screenshots
+│   ├── risk-analysis.md                # Risk scoring and prioritization
+│   └── ux-improvements.md              # Observations & suggestions
 │
 ├── artifacts/                     # Screenshots / test output (optional)
 │
@@ -60,7 +61,8 @@ Contains all Playwright automation scripts:
 
 **reports/**  
 Contains all project documentation:  
-- `test-cases.md` – Complete smoke and regression test suite  
+- `smoke_testcases.md` – Complete smoke test suite  
+- `regression_testcases.md` – Complete regression test suite  
 - `bugs.md` – Logged defects with expected vs actual behavior  
 - `risk-analysis.md` – High-risk areas and automation priority  
 - `ux-improvements.md` – Usability and product enhancement suggestions  
@@ -138,3 +140,11 @@ Atom, Sublime, WebStorm, etc.
 Or use any Markdown viewer of your choice.
 
 Note: Installing a Markdown viewer is optional — all .md files can be viewed directly on GitHub with no setup required.
+
+## Page Idle State & Timeout Information
+
+```
+1. Wizikey’s Media Search page continuously fires background API calls, which prevents the page from reaching a true idle state. As a result, `networkidle` waits may exceed Playwright’s default 30s timeout. If you encounter a `30s timeout` error, it is not an automation script issue — it is a performance behavior of the application.
+
+2. A 30s timeout may also occur when a DOM selector changes or becomes unstable. In such cases, the script is waiting for an element that no longer exists or has a different locator.
+```

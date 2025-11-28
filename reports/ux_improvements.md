@@ -26,3 +26,7 @@
 - The current search bar only supports free-text search (mostly by reporter name or news), but does not search across other important fields, such as: Publications, Interests, Locations. This limits the user’s ability to quickly find relevant reporters and forces unnecessary use of multiple filters.
 For example, typing “Delhi”, “Economy”, or “Hindustan Times” in the search bar not returns relevent results.
 #### Suggestion: Implement Multi-Field Keyword Search or Add “Search by” Dropdown Options or Update Placeholder for Better Clarity
+
+## Automation Timeout Due to Continuous Background API Calls
+- When navigating to the Media Search page, Playwright’s default 30-second auto-wait timeout is exceeded if automation uses networkidle. 
+#### Suggestion: Optimize background API activity to ensure the page reaches an idle state and improves overall performance.
